@@ -4,13 +4,7 @@
 
 
 ## Features
-
-- Automatic detection of existing nOps projects for the AWS account
-- Creation of new nOps projects if none exist
-- Handling of master and member AWS accounts
-- Automatic setup of IAM roles and policies for nOps integration
-- S3 bucket creation and configuration for master accounts
-- Integration with nOps API for secure token exchange
+- Creation of an IAM role per cluster in a region or targeted clusters
 
 ## Prerequisites
 
