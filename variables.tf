@@ -1,9 +1,3 @@
-variable "include_regions" {
-  type        = string
-  description = "Comma-separated list of regions to include (e.g., us-east-1,us-east-2,us-west-1,us-west-2) or left blank to use the region where the Terraform Stack is being created"
-  default     = ""
-}
-
 variable "role_name" {
   type        = string
   description = "The name of the IAM role to attach the read policy, it should be the same as the integration role created when onboarding into nOps."
@@ -29,19 +23,15 @@ variable "environment" {
   }
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "token" {
   type        = string
-  description = "nOps Client Token"
+  description = "nOps API Client Token"
   sensitive   = true
 }
 
-# tflint-ignore: terraform_unused_declarations
-variable "auto_update" {
-  type        = bool
-  description = "Whether to update the stack automatically when a new version is released or not"
-  default     = false
-  validation {
-    condition     = contains([true, false], var.auto_update)
-    error_message = "AutoUpdate must be either 'true' or 'false'."
-  }
+variable "cluster_names" {
+  type        = list(string)
+  description = "EKS cluster name targeted to deploy resources, keep empty to create roles for all EKS clusters in this region."
+  default     = []
 }

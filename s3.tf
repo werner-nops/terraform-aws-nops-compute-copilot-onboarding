@@ -2,14 +2,6 @@ resource "aws_s3_bucket" "nops_container_cost" {
   bucket = "nops-container-cost-${data.aws_caller_identity.current.account_id}"
 }
 
-resource "aws_s3_bucket_ownership_controls" "example" {
-  bucket = aws_s3_bucket.nops_container_cost.id
-
-  rule {
-    object_ownership = "BucketOwnerPreferred"
-  }
-}
-
 resource "aws_s3_bucket_server_side_encryption_configuration" "nops_bucket_encryption" {
   bucket = aws_s3_bucket.nops_container_cost.id
 
