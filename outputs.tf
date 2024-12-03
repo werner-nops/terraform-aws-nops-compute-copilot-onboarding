@@ -8,12 +8,12 @@ output "nops_cross_account_role_arn" {
   value       = aws_iam_role.nops_cross_account_role.arn
 }
 
-output "nops_ccost_role_arn" {
-  description = "The ARN of the role to be used by the agent."
-  value       = !var.create_iam_user ? aws_iam_role.nops_ccost_role[0].arn : ""
+output "nops_ccost_roles_arn" {
+  description = "The ARNs of the roles to be used by the agent."
+  value       = !var.create_iam_user ? [for cluster in local.target_clusters : { cluster : aws_iam_role.nops_ccost_role[cluster].arn }] : []
 }
 
 output "nops_ccost_user_arn" {
   description = "The ARN of the role to be used by the agent."
-  value       = !var.create_iam_user ? aws_iam_user.iam_user[0].arn : ""
+  value       = var.create_iam_user ? aws_iam_user.iam_user[0].arn : ""
 }

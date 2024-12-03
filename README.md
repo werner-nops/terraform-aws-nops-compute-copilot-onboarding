@@ -69,7 +69,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_eks_clusters"></a> [eks\_clusters](#output\_eks\_clusters) | Selected EKS clusters metadata |
-| <a name="output_nops_ccost_role_arn"></a> [nops\_ccost\_role\_arn](#output\_nops\_ccost\_role\_arn) | The ARN of the role to be used by the agent. |
+| <a name="output_nops_ccost_roles_arn"></a> [nops\_ccost\_roles\_arn](#output\_nops\_ccost\_roles\_arn) | The ARNs of the roles to be used by the agent. |
 | <a name="output_nops_ccost_user_arn"></a> [nops\_ccost\_user\_arn](#output\_nops\_ccost\_user\_arn) | The ARN of the role to be used by the agent. |
 | <a name="output_nops_cross_account_role_arn"></a> [nops\_cross\_account\_role\_arn](#output\_nops\_cross\_account\_role\_arn) | the ARN of the role used by nOps for cross account access to access the S3 bucket. |
 <!-- END_TF_DOCS -->
