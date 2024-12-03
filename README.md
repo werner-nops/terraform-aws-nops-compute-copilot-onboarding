@@ -1,4 +1,4 @@
-# nOps AWS Container Cost Integration Terraform Module
+# nOps AWS Compute Copilot Onboarding Terraform Module
 
 ## Description
 
