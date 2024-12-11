@@ -56,6 +56,7 @@ variable "karpenops_enabled" {
 variable "karpenops_image_tag" {
   type        = string
   description = "Image tag to use for the karpenops service."
+  default     = "1.23.6"
 }
 
 variable "karpenops_cluster_id" {
@@ -66,4 +67,10 @@ variable "karpenops_cluster_id" {
 variable "cluster_name" {
   type        = string
   description = "Cluster name where the agent will be deployed."
+}
+
+variable "s3_bucket_name" {
+  type        = string
+  description = "S3 bucket for Container Cost exports, useful if bucket is in another region."
+  default     = ""
 }

@@ -5,9 +5,9 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
-    nops = {
-      source  = "nops-io/nops"
-      version = "0.0.7"
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.9.0"
     }
   }
 }

@@ -1,6 +1,6 @@
 resource "helm_release" "compute_copilot" {
-  name             = "nops-kubernetes-agent"
-  repository       = "oci://public.ecr.aws/nops/kubernetes-agent"
+  name             = local.helm_release_name
+  repository       = local.helm_repo
   chart            = "."
   version          = var.chart_version
   namespace        = "nops"
@@ -30,7 +30,7 @@ resource "helm_release" "compute_copilot" {
 
   set {
     name  = "containerInsights.env_variables.APP_AWS_S3_BUCKET"
-    value = data.aws_s3_bucket.bucket.id
+    value = var.s3_bucket_name == "" ? data.aws_s3_bucket.bucket[0].id : var.s3_bucket_name
   }
 
   set {

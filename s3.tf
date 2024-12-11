@@ -1,9 +1,11 @@
 resource "aws_s3_bucket" "nops_container_cost" {
+  count  = var.create_bucket ? 1 : 0
   bucket = "nops-container-cost-${data.aws_caller_identity.current.account_id}"
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "nops_bucket_encryption" {
-  bucket = aws_s3_bucket.nops_container_cost.id
+  count  = var.create_bucket ? 1 : 0
+  bucket = aws_s3_bucket.nops_container_cost[0].id
 
   rule {
     apply_server_side_encryption_by_default {
@@ -13,7 +15,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "nops_bucket_encry
 }
 
 resource "aws_s3_bucket_public_access_block" "nops_bucket_block_public_access" {
-  bucket = aws_s3_bucket.nops_container_cost.id
+  count  = var.create_bucket ? 1 : 0
+  bucket = aws_s3_bucket.nops_container_cost[0].id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -22,7 +25,8 @@ resource "aws_s3_bucket_public_access_block" "nops_bucket_block_public_access" {
 }
 
 resource "aws_s3_bucket_policy" "nops_bucket_deny_insecure_transport" {
-  bucket = aws_s3_bucket.nops_container_cost.id
+  count  = var.create_bucket ? 1 : 0
+  bucket = aws_s3_bucket.nops_container_cost[0].id
   policy = jsonencode({
     Version = "2008-10-17"
     Statement = [
@@ -31,8 +35,8 @@ resource "aws_s3_bucket_policy" "nops_bucket_deny_insecure_transport" {
         Principal = "*"
         Action    = "s3:*"
         Resource = [
-          aws_s3_bucket.nops_container_cost.arn,
-          "${aws_s3_bucket.nops_container_cost.arn}/*"
+          aws_s3_bucket.nops_container_cost[0].arn,
+          "${aws_s3_bucket.nops_container_cost[0].arn}/*"
         ]
         Condition = {
           Bool = {

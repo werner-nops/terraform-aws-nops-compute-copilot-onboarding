@@ -23,15 +23,14 @@ variable "environment" {
   }
 }
 
-# tflint-ignore: terraform_unused_declarations
-variable "token" {
-  type        = string
-  description = "nOps API Client Token"
-  sensitive   = true
-}
-
 variable "cluster_names" {
   type        = list(string)
   description = "EKS cluster name targeted to deploy resources, keep empty to create roles for all EKS clusters in this region."
   default     = []
+}
+
+variable "create_bucket" {
+  type        = bool
+  description = "Whether to create the S3 bucket or not, this variable can be used for cases where the bucket is already present or in another region."
+  default     = true
 }

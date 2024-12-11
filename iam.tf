@@ -200,9 +200,8 @@ resource "aws_iam_role_policy" "nops_ccost_policy" {
           "sqs:DeleteMessage"
         ]
         Resource = [
-          "arn:aws:sqs:us-west-2:${local.nops_account}:nops-k8s-*"
+          "arn:aws:sqs:us-west-2:${local.nops_account}:nops-k8s-*",
         ]
-
       }
     ]
   })
