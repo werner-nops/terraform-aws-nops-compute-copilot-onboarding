@@ -46,6 +46,7 @@ jobs:
             git config --global user.email "werner@nops.io"
             git config --global user.name "Auto"
             git commit -am "bumping version in module [skip ci]"
+            git remote set-url origin https://x-access-token:${{ secrets.SEMANTIC_RELEASE_TOKEN }}@github.com/${{ github.repository }}
             git push
           else
             echo "No version to update."
