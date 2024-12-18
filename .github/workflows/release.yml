@@ -42,7 +42,7 @@ jobs:
 
       - name: Inject new version in configuration
         run: |
-          sed -i -e 's/${{steps.dry_release.outputs.last_release_version}}/${{steps.dry_release.outputs.new_release_version}}' locals.tf
+          sed -i -e 's/${{steps.dry_release.outputs.last_release_version}}/${{steps.dry_release.outputs.new_release_version}}/' locals.tf
 
       # - name: Release
       #   uses: cycjimmy/semantic-release-action@v4
@@ -53,4 +53,4 @@ jobs:
       #       @semantic-release/git@10.0.1
       #       conventional-changelog-conventionalcommits@7.0.2
         # env:
-        #   GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+        #   GITHUB_TOKEN:
