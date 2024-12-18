@@ -3,5 +3,5 @@ locals {
   target_clusters_arns = [for cluster in data.aws_eks_cluster.cluster : cluster.arn]
   s3_bucket_name       = "arn:aws:s3:::nops-container-cost-${data.aws_caller_identity.current.account_id}"
   nops_account         = var.environment == "PROD" ? "202279780353" : "844856862745"
-  module_version = "1.0.3"
+  module_version = "1.0.4"
 }
