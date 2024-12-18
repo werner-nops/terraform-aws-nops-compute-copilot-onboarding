@@ -14,5 +14,9 @@
   "bugs": {
     "url": "https://github.com/nops-io/terraform-aws-nops-compute-copilot-onboarding/issues"
   },
-  "homepage": "https://github.com/nops-io/terraform-aws-nops-compute-copilot-onboarding#readme"
+  "homepage": "https://github.com/nops-io/terraform-aws-nops-compute-copilot-onboarding#readme",
+  "dependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "semantic-release": "^24.2.0"
+  }
 }
