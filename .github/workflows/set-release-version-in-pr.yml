@@ -36,7 +36,8 @@ jobs:
           dry_run: true
           ci: false
           branches: |
-            [
+            [ 
+              'main',
               '${{github.ref}}'
             ]
         env:
