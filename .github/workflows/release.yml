@@ -25,13 +25,28 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Release
+      - name: Pre-release
         uses: cycjimmy/semantic-release-action@v4
         with:
           semantic_version: 23.0.2
-          extra_plugins: |
-            @semantic-release/changelog@6.0.3
-            @semantic-release/git@10.0.1
-            conventional-changelog-conventionalcommits@7.0.2
+          dry_run: true
         env:
-          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+      - name: Use the version
+        run: echo "The version is ${{ steps.dry_release.outputs.new-release-version }}"
+
+      - name: Inject new version in configuration
+        run: |
+          sed -i -e 's/${{steps.dry_release.outputs.last_release_version}}/${{steps.dry_release.outputs.new_release_version}}' locals.tf
+
+      # - name: Release
+      #   uses: cycjimmy/semantic-release-action@v4
+      #   with:
+      #     semantic_version: 23.0.2
+      #     extra_plugins: |
+      #       @semantic-release/changelog@6.0.3
+      #       @semantic-release/git@10.0.1
+      #       conventional-changelog-conventionalcommits@7.0.2
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
