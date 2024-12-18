@@ -26,9 +26,9 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Change releaserc
+      - name: Remove releaserc
         run: |
-          jq 'del(.branches)' .releaserc.json > .releaserc.json
+          rm .releaserc.json
 
       - name: Get new release version
         uses: cycjimmy/semantic-release-action@v4
@@ -36,6 +36,8 @@ jobs:
         with:
           semantic_version: 23.0.2
           dry_run: true
+          ci: false
+          branches: "$GITHUB_HEAD_REF"
         
       - name: Inject new version in configuration
         run: |
