@@ -28,6 +28,7 @@ jobs:
       - name: Remove releaserc file
         run: |
           rm .releaserc.json
+          unset GITHUB_ACTIONS
 
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
@@ -37,7 +38,6 @@ jobs:
           ci: false
           branches: |
             [ 
-              'main',
               '${{github.head_ref}}'
             ]
         env:
