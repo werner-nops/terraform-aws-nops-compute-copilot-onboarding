@@ -39,7 +39,7 @@ jobs:
           ci: false
           branches: |
             [
-              '${{github.ref_name}}'
+              '${{github.ref}}'
             ]
         
       - name: Inject new version in configuration
