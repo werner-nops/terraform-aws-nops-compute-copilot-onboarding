@@ -39,10 +39,10 @@ jobs:
       - name: Inject new version in configuration
         run: |
           if [ "${{steps.dry_release.outputs.last_release_version}}" != "" ]; then
-            echo "Updating version to ${{steps.dry_release.outputs.last_release_version}}."
+            echo "Updating version to ${{steps.dry_release.outputs.new_release_version}}."
             sed -i -e 's/${{steps.dry_release.outputs.last_release_version}}/${{steps.dry_release.outputs.new_release_version}}/' locals.tf
-              git config --global user.email "werner@nops.io"
-              git config --global user.name "Auto"
+            git config --global user.email "werner@nops.io"
+            git config --global user.name "Auto"
             git commit -am "bumping version in module [skip ci]"
           else
             echo "No version to update."
