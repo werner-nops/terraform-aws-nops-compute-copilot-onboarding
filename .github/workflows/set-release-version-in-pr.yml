@@ -19,6 +19,8 @@ jobs:
       - name: Remove releaserc
         run: |
           rm .releaserc.json
+          printenv
+          echo ${{github.ref}}
 
       - name: Get new release version
         uses: cycjimmy/semantic-release-action@v4
