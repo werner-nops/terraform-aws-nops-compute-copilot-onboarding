@@ -37,6 +37,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
 
       - name: Inject new version in configuration
+        env:
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
         run: |
           if [ "${{steps.dry_release.outputs.last_release_version}}" != "" ]; then
             echo "Updating version to ${{steps.dry_release.outputs.new_release_version}}."
@@ -44,6 +46,7 @@ jobs:
             git config --global user.email "werner@nops.io"
             git config --global user.name "Auto"
             git commit -am "bumping version in module [skip ci]"
+            git push
           else
             echo "No version to update."
           fi
