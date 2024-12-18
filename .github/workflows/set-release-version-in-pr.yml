@@ -4,16 +4,6 @@ on:
   pull_request:
     branches:
       - main
-      - master
-    paths:
-      - '**/*.tpl'
-      - '**/*.py'
-      - '**/*.tf'
-      - '.github/workflows/release.yml'
-
-
-permissions:
-  contents: write
 
 jobs:
   get_release_version:
