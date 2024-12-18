@@ -1,0 +1,50 @@
+name: Change release version in PR
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+    paths:
+      - '**/*.tpl'
+      - '**/*.py'
+      - '**/*.tf'
+      - '.github/workflows/release.yml'
+
+
+permissions:
+  contents: write
+
+jobs:
+  get_release_version:
+    name: Get new release version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Get new release version
+        uses: cycjimmy/semantic-release-action@v4
+        id: new_release_version
+        with:
+          semantic_version: 23.0.2
+          dry_run: true
+        
+      - name: Inject new version in configuration
+        run: |
+          sed -i -e 's/${{steps.new_release_version.outputs.last_release_version}}/${{steps.new_release_version.outputs.new_release_version}}' locals.tf
+
+      
+      - name: Commit new version value
+        env:
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+        run: |
+          git config --global user.name 'CI'
+          git config --global user.email 'werner@nops.io'
+          git remote set-url origin https://x-access-token:${{ secrets.SEMANTIC_RELEASE_TOKEN }}@github.com/${{ github.repository }}
+          git commit -am "Updating release version [skip ci]"
+          git push
+        
