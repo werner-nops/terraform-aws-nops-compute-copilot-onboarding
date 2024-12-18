@@ -37,7 +37,10 @@ jobs:
           semantic_version: 23.0.2
           dry_run: true
           ci: false
-          branches: "$GITHUB_HEAD_REF"
+          branches: |
+            [
+              '${{github.head_ref}}'
+            ]
         
       - name: Inject new version in configuration
         run: |
