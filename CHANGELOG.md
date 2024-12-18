@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/compare/v1.0.0...v1.0.1) (2024-12-18)
+
+
+### Bug Fixes
+
+* test ([cfe5677](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/cfe5677b0fd26c1ab9a2498cacc0583450d6129d))
+
 ## 1.0.0 (2024-12-18)
 
 
