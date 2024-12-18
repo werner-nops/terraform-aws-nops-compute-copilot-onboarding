@@ -33,3 +33,5 @@ terraform.rc
 tests/**
 
 .idea
+
+node_modules

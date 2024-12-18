@@ -1,0 +1,48 @@
+name: Change release version in PR
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with :
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3          
+
+      - name: Release
+        uses: cycjimmy/semantic-release-action@v4
+        id: dry_release
+        with:
+          semantic_version: 23.0.2
+          dry_run: true
+          ci: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Use the version
+        run: echo "The version is ${{ steps.dry_release.outputs.new-release-version }}"
+        
+      - name: Inject new version in configuration
+        run: |
+          sed -i -e 's/${{steps.dry_release.outputs.last_release_version}}/${{steps.dry_release.outputs.new_release_version}}' locals.tf
+
+      - name: Commit new version value
+        env:
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+        run: |
+          git config --global user.name 'CI'
+          git config --global user.email 'werner@nops.io'
+          git remote set-url origin https://x-access-token:${{ secrets.SEMANTIC_RELEASE_TOKEN }}@github.com/${{ github.repository }}
+          git add locals.tf
+          git commit -m "Updating release version [skip ci]"
+          git push
+        
