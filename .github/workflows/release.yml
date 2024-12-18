@@ -38,7 +38,7 @@ jobs:
 
       - name: Inject new version in configuration
         run: |
-          if ["${{steps.dry_release.outputs.last_release_version}}" != ""]; then
+          if [ "${{steps.dry_release.outputs.last_release_version}}" != "" ]; then
             echo "Updating version to ${{steps.dry_release.outputs.last_release_version}}."
             sed -i -e 's/${{steps.dry_release.outputs.last_release_version}}/${{steps.dry_release.outputs.new_release_version}}/' locals.tf
           else
