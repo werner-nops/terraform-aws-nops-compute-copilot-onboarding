@@ -22,6 +22,7 @@ jobs:
 
       - name: Remove releaserc file and GITHUB env vars
         run: |
+          printenv
           rm .releaserc.json
           unset GITHUB_ACTIONS
           unset GITHUB_EVENT_NAME
