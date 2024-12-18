@@ -26,7 +26,6 @@ jobs:
           rm .releaserc.json
           unset GITHUB_ACTIONS
           unset GITHUB_EVENT_NAME
-          unset GITHUB_REF
 
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
@@ -36,7 +35,7 @@ jobs:
           ci: false
           branches: |
             [ 
-              '${{github.head_ref}}'
+              '${{github.ref}}'
             ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
