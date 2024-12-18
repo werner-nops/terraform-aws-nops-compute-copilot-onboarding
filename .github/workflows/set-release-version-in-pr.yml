@@ -26,6 +26,10 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - name: Change releaserc
+        run: |
+          jq 'del(.branches)' .releaserc.json > .releaserc.json
+
       - name: Get new release version
         uses: cycjimmy/semantic-release-action@v4
         id: new_release_version
@@ -45,6 +49,7 @@ jobs:
           git config --global user.name 'CI'
           git config --global user.email 'werner@nops.io'
           git remote set-url origin https://x-access-token:${{ secrets.SEMANTIC_RELEASE_TOKEN }}@github.com/${{ github.repository }}
-          git commit -am "Updating release version [skip ci]"
+          git add locals.tf
+          git commit -m "Updating release version [skip ci]"
           git push
         
