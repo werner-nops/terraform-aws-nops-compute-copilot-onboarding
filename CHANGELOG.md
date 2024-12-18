@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.0 (2024-12-18)
+
+
+### Features
+
+* adding helm installation submodule ([550809d](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/550809d703ad8a86fa633f7ca973c9540a00d2d9))
+* Adding optional bucket creation, fixing issues with cross region resource references ([#1](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/issues/1)) ([f915754](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/f915754f1205b15b345610ff6ae885b7c417b0e5))
+* copying cf as is to TF ([fdbd3bd](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/fdbd3bd88a691a3218692b82be8527772ec28add))
+* first working version ([59ba895](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/59ba895136737301f5195c9766b38aac56c78d56))
+
+
+### Bug Fixes
+
+* Adding release and changelog files ([b3a5b77](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/b3a5b77155412211eea373fbd293baf177a99a5d))
+
 ## 1.0.0 (2024-12-11)
 
 
