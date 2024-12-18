@@ -36,18 +36,15 @@ jobs:
             conventional-changelog-conventionalcommits@7.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
-      - name: Use the version
-        run: echo "The version is ${{ steps.dry_release.outputs.new-release-version }}"
 
       - name: Inject new version in configuration
         run: |
-          if [[steps.dry_release.outputs.last_release_version != '']]
-          then
+          if [[steps.dry_release.outputs.last_release_version != '']]; then
             echo "Updating version to ${{steps.dry_release.outputs.last_release_version}}."
             sed -i -e 's/${{steps.dry_release.outputs.last_release_version}}/${{steps.dry_release.outputs.new_release_version}}/' locals.tf
           else
             echo "No version to update."
+          fi
 
       # - name: Release
       #   uses: cycjimmy/semantic-release-action@v4
