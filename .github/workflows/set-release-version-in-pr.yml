@@ -22,7 +22,6 @@ jobs:
 
       - name: Remove releaserc file and GITHUB env vars
         run: |
-          printenv
           rm .releaserc.json
           unset GITHUB_ACTIONS
           unset GITHUB_EVENT_NAME
@@ -37,11 +36,11 @@ jobs:
           ci: false
           branches: |
             [ 
-              '${{github.ref}}'
+              '${{github.head_ref}}'
             ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REF: ${{github.ref_name}}
+          GITHUB_REF: ${{github.head_ref}}
 
       # - name: Semantic Release dry run
       #   id: dry_release
