@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.3](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/compare/v1.0.2...v1.0.3) (2024-12-18)
+
+
+### Bug Fixes
+
+* test ([a5083f7](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/a5083f7e795a921a59029876c29a56b66d01bb1c))
+* test ([424aec0](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/424aec09e13c7a70723f1cf69965819198a8db30))
+* test ([c3204d6](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/c3204d66d0f2fc43c16478c707e97387d58e98b0))
+* test ([a34f8aa](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/a34f8aa78c80b8abbc758705f726622ef716a160))
+
 ## [1.0.2](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/compare/v1.0.1...v1.0.2) (2024-12-18)
 
 
