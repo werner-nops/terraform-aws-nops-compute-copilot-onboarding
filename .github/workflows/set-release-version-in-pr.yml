@@ -2,8 +2,8 @@ name: Change release version in PR
 
 on:
   pull_request:
-      branches:
-          - main
+    branches:
+      - main
 
 jobs:
     build:
@@ -18,17 +18,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3          
 
-      - name: Semantic Release dry run
-        id: dry-release
-        run: |
-          OUTPUT="$(bash -c "unset GITHUB_ACTIONS && npx semantic-release --dry-run --no-ci --branches '${HEAD_REF}'")"
-          NEW_RELEASE_VERSION=$(echo "$OUTPUT" | grep -oP 'The next release version is \K(\d+\.\d+\.\d+)')
-          echo "new-release-version=$NEW_RELEASE_VERSION" >> "$GITHUB_OUTPUT"
+      - name: Release
+        uses: cycjimmy/semantic-release-action@v4
+        id: dry_release
+        with:
+          semantic_version: 23.0.2
+          dry_run: true
+          ci: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          HEAD_REF: ${{ github.head_ref }}
+
       - name: Use the version
-        run: echo "The version is ${{ steps.dry-release.outputs.new-release-version }}"
+        run: echo "The version is ${{ steps.dry_release.outputs.new-release-version }}"
         
       - name: Inject new version in configuration
         run: |
