@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/compare/v1.0.5...v1.1.0) (2024-12-19)
+
+
+### Features
+
+* testing release ([92cbf1a](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/92cbf1a2827d2fc28f6557137004f325c2725c41))
+* testing release ([2e6792e](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/2e6792e3f2f1443a1c475e764edf4b0abf7467fd))
+* testing release ([2f81394](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/2f81394938accadb5db666ee303131605e1df9d6))
+* testing release ([2e23ebf](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/2e23ebf68c312644e87359a158cafe250c1cf454))
+* testing release ([7e919a5](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/7e919a56efb616eeb4b5a154fd9940b4451e3091))
+* testing release ([237547e](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/237547e81054cb75277dc4b8611d329433e0b64c))
+* testing release ([9141b17](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/9141b17a5537b058848a91bf8898e1a74c6236b7))
+* testing release ([bbe1dc2](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/bbe1dc2f96620976eddcc9acededb38ab30b0fef))
+* testing release ([8b5c6e9](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/8b5c6e9f1ae38c0e0112aa2ebd3fceee72d4a576))
+* testing releasing without updating ([311ca3e](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/commit/311ca3ef7fe9fd2cb9390a3c4b4c0dcc3434c6b8))
+
 ## [1.0.5](https://github.com/werner-nops/terraform-aws-nops-compute-copilot-onboarding/compare/v1.0.4...v1.0.5) (2024-12-18)
 
 
