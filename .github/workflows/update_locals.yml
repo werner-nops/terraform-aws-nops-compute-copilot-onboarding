@@ -17,9 +17,9 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Remove releaserc file
-        run: |
-          rm .releaserc.json
+      # - name: Remove releaserc file
+      #   run: |
+      #     rm .releaserc.json
 
       - name: Pre-release
         uses: cycjimmy/semantic-release-action@v4
