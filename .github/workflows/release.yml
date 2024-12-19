@@ -44,7 +44,7 @@ jobs:
       - name: Check version in locals is the latest
         run: |
           CURRENT_VERSION=$(cat locals.tf | hcledit attribute get locals.module_version)
-          if [ "${{steps.dry_release.outputs.new_release_version}}" == $CURRENT_VERSION ]; then
+          if [ "${{steps.dry_release.outputs.new_release_version}}" == "$CURRENT_VERSION" ]; then
             echo "Releasing version ${{steps.dry_release.outputs.new_release_version}}."
           elif [ "${{steps.dry_release.outputs.new_release_version}}" == "" ]; then
             echo "No release to be triggered by this merge, skipping check"
