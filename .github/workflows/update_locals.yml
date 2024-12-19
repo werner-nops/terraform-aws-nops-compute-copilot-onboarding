@@ -17,10 +17,6 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      # - name: Remove releaserc file
-      #   run: |
-      #     rm .releaserc.json
-
       - name: Pre-release
         uses: cycjimmy/semantic-release-action@v4
         id: dry_release
@@ -40,10 +36,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
 
       - name: Print new version
-        env:
-          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
         run: |
-          if [ "${{steps.dry_release.outputs.last_release_version}}" != "" ]; then
+          if [ "${{steps.dry_release.outputs.new_release_version}}" != "" ]; then
             echo "Update module version in locals.tf to ${{steps.dry_release.outputs.new_release_version}}."
           else
             echo "No version update."
