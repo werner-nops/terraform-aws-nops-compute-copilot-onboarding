@@ -49,7 +49,7 @@ jobs:
           elif [ "${{steps.dry_release.outputs.new_release_version}}" == "" ]; then
             echo "No release to be triggered by this merge, skipping check"
           else
-            echo "Please make sure to update module_version in locals.tf with the new release version."
+            echo "Please make sure to update module_version in locals.tf with the new release version ${{steps.dry_release.outputs.new_release_version}}."
             exit 1
           fi
 
