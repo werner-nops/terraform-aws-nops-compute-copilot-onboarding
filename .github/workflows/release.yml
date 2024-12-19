@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - master
     paths:
       - '**/*.tpl'
       - '**/*.py'
@@ -23,6 +22,12 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - name: Install dependencies
+        env:
+          TFHCLEDIT_VERSION: 0.2.15
+        run: |
+          curl -Lo ./hcledit.tar.gz https://github.com/minamijoyo/hcledit/releases/download/v${{ env.TFHCLEDIT_VERSION }}/hcledit_${{ env.TFHCLEDIT_VERSION }}_$(uname)_amd64.tar.gz && tar -xzf hcledit.tar.gz hcledit && chmod +x hcledit && sudo mv hcledit /usr/bin/
+
       - name: Pre-release
         uses: cycjimmy/semantic-release-action@v4
         id: dry_release
@@ -36,30 +41,24 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
 
-      - name: Inject new version in configuration
-        env:
-          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+      - name: Check version in locals is the latest
         run: |
-          if [ "${{steps.dry_release.outputs.last_release_version}}" != "" ]; then
-            echo "Updating version to ${{steps.dry_release.outputs.new_release_version}}."
-            sed -i -e 's/${{steps.dry_release.outputs.last_release_version}}/${{steps.dry_release.outputs.new_release_version}}/' locals.tf
-            git config --global user.email "werner@nops.io"
-            git config --global user.name "Auto"
-            git commit -am "bumping version in module [skip ci]"
-            git remote set-url origin https://x-access-token:${{ secrets.SEMANTIC_RELEASE_TOKEN }}@github.com/${{ github.repository }}
-            git push
+          CURRENT_VERSION=$(cat locals.tf | hcledit attribute get locals.module_version)
+          if [ "${{steps.dry_release.outputs.new_release_version}}" == $CURRENT_VERSION ]; then
+            echo "Releasing version ${{steps.dry_release.outputs.new_release_version}}."
           else
-            echo "No version to update."
+            echo "Please make sure to update module_version in locals.tf with the new release version."
+            exit 1
           fi
 
-      - name: Release
-        uses: cycjimmy/semantic-release-action@v4
-        with:
-          semantic_version: 23.0.2
-          extra_plugins: |
-            @semantic-release/changelog@6.0.3
-            @semantic-release/git@10.0.1
-            conventional-changelog-conventionalcommits@7.0.2
-        env:
-          GITHUB_TOKEN: ${{secrets.SEMANTIC_RELEASE_TOKEN}}
+      # - name: Release
+      #   uses: cycjimmy/semantic-release-action@v4
+      #   with:
+      #     semantic_version: 23.0.2
+      #     extra_plugins: |
+      #       @semantic-release/changelog@6.0.3
+      #       @semantic-release/git@10.0.1
+      #       conventional-changelog-conventionalcommits@7.0.2
+      #   env:
+      #     GITHUB_TOKEN: ${{secrets.SEMANTIC_RELEASE_TOKEN}}
 
