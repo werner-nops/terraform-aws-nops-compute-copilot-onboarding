@@ -7,8 +7,8 @@ on:
       - '!main'
 
 jobs:
-  pre_release:
-    name: Pre Release
+  update_locals:
+    name: Update locals
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,6 +27,7 @@ jobs:
         with:
           semantic_version: 23.0.2
           dry_run: true
+          ci: false
           branches: |
             [
               '${{github.ref_name}}'
