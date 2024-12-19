@@ -43,7 +43,7 @@ jobs:
 
       - name: Check version in locals is the latest
         run: |
-          CURRENT_VERSION=$(cat locals.tf | hcledit attribute get locals.module_version)
+          CURRENT_VERSION=$(cat locals.tf | hcledit attribute get locals.module_version | sed 's/"//g')
           echo $CURRENT_VERSION
           if [ ${{steps.dry_release.outputs.new_release_version}} = $CURRENT_VERSION ]; then
             echo "Releasing version ${{steps.dry_release.outputs.new_release_version}}."
